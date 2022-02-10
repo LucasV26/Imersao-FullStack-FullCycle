@@ -75,7 +75,7 @@ services:
       - |
         echo "Installing Connector"
         confluent-hub install --no-prompt mongodb/kafka-connect-mongodb:1.5.0
-        confluent-hub install --no-prompt jcustenborder/kafka-connect-twitter:0.3.33
+        confluent-hub install --no-prompt jcustenborder/kafka-connect-twitter:0.3.34
         #
         echo "Launching Kafka Connect worker"
         /etc/confluent/docker/run &
