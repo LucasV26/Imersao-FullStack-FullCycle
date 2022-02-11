@@ -12,7 +12,7 @@ import { MailListModule } from './mail-list/mail-list.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({isGlobal: true}),
     BullModule.forRoot({
       redis: {
         host: process.env.REDIS_HOST,
