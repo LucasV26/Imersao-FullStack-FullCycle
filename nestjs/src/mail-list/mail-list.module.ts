@@ -17,8 +17,20 @@ import { ClientKafka, ClientsModule, Transport } from '@nestjs/microservices';
         transport: Transport.KAFKA, 
         options: { 
           client: {
-            clientId: 'nest',
-            brokers: ['host.docker.internal:9094'],
+            clientId: process.env.KAFKA_CLIENT_ID,
+            connectionTimeout: parseInt(process.env.KAFKA_CONNECTION_TIMEOUT),
+            brokers: [process.env.KAFKA_HOST],
+            ssl: process.env.KAFKA_USE_SSL === "true",
+            ...(process.env.KAFKA_SASL_USERNAME &&
+              process.env.KAFKA_SASL_USERNAME !== "" &&
+              process.env.KAFKA_SASL_PASSWORD &&
+              process.env.KAFKA_SASL_PASSWORD !== "" && {
+                sasl: {
+                  mechanism: "plain",
+                  username: process.env.KAFKA_SASL_USERNAME,
+                  password: process.env.KAFKA_SASL_PASSWORD
+                },
+              }),
           },
           consumer: {
             groupId: 'nest',

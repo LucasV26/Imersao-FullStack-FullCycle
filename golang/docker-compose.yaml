@@ -3,6 +3,17 @@ version: '3'
 services:
   app:
     build: .
+    environment:
+      - MAIL_HOST=smtp.gmail.com
+      - MAIL_PORT=587
+      - MAIL_USER=x
+      - MAIL_PASSWORD=y
+      - MAIL_FROM=capratofficial@gmail.com
+      - BOOTSTRAP_SERVERS=cluster-link
+      - SECURITY_PROTOCOL=SASL_SSL
+      - SASL_MECHANISMS=PLAIN
+      - SASL_USERNAME=User-key
+      - SASL_PASSWORD=User-pass
     volumes: 
       - .:/go/src/
     extra_hosts:
